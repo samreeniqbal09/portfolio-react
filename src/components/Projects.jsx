@@ -23,7 +23,7 @@ function Projects() {
     {
       title: 'Portfolio Website',
       description: 'Personal portfolio built with React + Tailwind CSS.',
-      githubLink: 'https://github.com/samreeniqbal09/portfolio-react'
+      githubLink: 'https://github.com/samreeniqbal09/portfolio-react.git'
     }
   ]
 
