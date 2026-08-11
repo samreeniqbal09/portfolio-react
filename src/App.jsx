@@ -13,14 +13,7 @@ function App() {
   return (
     <div className={darkMode ? 'dark' : ''}>
       <div className="dark:bg-gray-900 min-h-screen transition-colors">
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 dark:text-white px-3 py-2 rounded-full shadow"
-        >
-          {darkMode ? '☀️' : '🌙'}
-        </button>
-
-        <Navbar />
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <Hero />
         <About />
         <Skills />

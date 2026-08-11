@@ -11,14 +11,14 @@ function About() {
     " I enjoy solving problems, learning new technologies, and building practical applications that improve user experience. I am a quick learner, a confident presenter, and always eager to enhance my technical and communication skills."
 
   return (
-    <section id="about" className="px-6 py-16 max-w-3xl mx-auto">
-      <h2 className="text-3xl font-bold mb-4">About Me</h2>
-      <p className="text-gray-700 leading-relaxed">
+    <section id="about" className="px-6 py-16 max-w-3xl mx-auto dark:bg-gray-900">
+      <h2 className="text-3xl font-bold mb-4 dark:text-white">About Me</h2>
+      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
         {showMore ? fullBio : shortBio}
       </p>
       <button
         onClick={() => setShowMore(!showMore)}
-        className="mt-4 text-blue-600 font-medium hover:underline"
+        className="mt-4 text-blue-600 dark:text-blue-400 font-medium hover:underline"
       >
         {showMore ? 'Show Less' : 'Show More'}
       </button>
