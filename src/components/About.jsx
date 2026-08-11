@@ -12,7 +12,15 @@ function About() {
 
   return (
     <section id="about" className="px-6 py-16 max-w-3xl mx-auto dark:bg-gray-900">
-      <h2 className="text-3xl font-bold mb-4 dark:text-white">About Me</h2>
+      <div className="flex items-center gap-3 mb-4">
+        <span className="bg-blue-100 dark:bg-blue-900 p-2 rounded-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
+          </svg>
+        </span>
+        <h2 className="text-3xl font-bold dark:text-white">About Me</h2>
+      </div>
       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
         {showMore ? fullBio : shortBio}
       </p>
