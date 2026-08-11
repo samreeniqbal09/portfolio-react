@@ -24,7 +24,7 @@ function Hero() {
           About Me
         </a>
         <a href="#skills" className="border border-gray-400 px-5 py-2 rounded hover:border-blue-600">
-          Skils
+          Skills
         </a>
          <a href="#projects" className="border border-gray-400 px-5 py-2 rounded hover:border-blue-500">
           Projects
