@@ -120,7 +120,7 @@ function Contact() {
             onChange={handleChange("name")}
             onBlur={handleBlur("name")}
             onFocus={handleFocus("name")}
-            placeholder="Jane Doe"
+            placeholder=""
             className={getFieldClasses("name")}
             aria-invalid={Boolean(touched.name && errors.name)}
             aria-describedby="contact-name-error"
@@ -150,7 +150,7 @@ function Contact() {
             onChange={handleChange("email")}
             onBlur={handleBlur("email")}
             onFocus={handleFocus("email")}
-            placeholder="jane@example.com"
+            placeholder=""
             className={getFieldClasses("email")}
             aria-invalid={Boolean(touched.email && errors.email)}
             aria-describedby="contact-email-error"
