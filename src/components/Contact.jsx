@@ -101,7 +101,7 @@ function Contact() {
     <section id="contact" className="px-6 py-16 max-w-3xl mx-auto dark:bg-gray-900">
       <h2 className="text-3xl font-bold mb-4 dark:text-white">Contact</h2>
       <p className="text-gray-700 dark:text-gray-300 mb-8">
-        Have a project in mind or just want to say hi? Send a message below.
+        "Intrested in collaborating or have a question ? Send me a message."
       </p>
 
       <form onSubmit={handleSubmit} noValidate className="space-y-5">
@@ -180,7 +180,7 @@ function Contact() {
             onChange={handleChange("message")}
             onBlur={handleBlur("message")}
             onFocus={handleFocus("message")}
-            placeholder="Tell me a bit about what you have in mind..."
+            placeholder="Let me know how can I help...."
             className={`${getFieldClasses("message")} resize-none`}
             aria-invalid={Boolean(touched.message && errors.message)}
             aria-describedby="contact-message-error"
