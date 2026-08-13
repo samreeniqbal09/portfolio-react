@@ -1,4 +1,5 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -31,6 +32,7 @@ function Contact() {
   const [focusedField, setFocusedField] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [sendError, setSendError] = useState("");
 
   const isValid =
     values.name.trim().length >= 2 &&
@@ -70,16 +72,31 @@ function Contact() {
 
     setIsSubmitting(true);
     setIsSuccess(false);
+    setSendError("");
 
-    // Fake submission — simulates network latency.
-    // Real email sending will be wired up in a later backend task.
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setValues(initialValues);
-      setErrors({ name: "", email: "", message: "" });
-      setTouched(initialTouched);
-    }, 1000);
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: values.name,
+          email: values.email,
+          message: values.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(() => {
+        setIsSubmitting(false);
+        setIsSuccess(true);
+        setValues(initialValues);
+        setErrors({ name: "", email: "", message: "" });
+        setTouched(initialTouched);
+      })
+      .catch((error) => {
+        console.error("EmailJS error:", error);
+        setIsSubmitting(false);
+        setSendError("Something went wrong. Please try again or email me directly.");
+      });
   };
 
   const fieldBaseClasses =
@@ -215,6 +232,13 @@ function Contact() {
         {isSuccess && (
           <p className="animate-[fadeIn_0.3s_ease-out] rounded-lg bg-emerald-50 dark:bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-700 dark:text-emerald-400">
             Message sent! I'll get back to you soon.
+          </p>
+        )}
+
+        {/* Error message */}
+        {sendError && (
+          <p className="animate-[fadeIn_0.3s_ease-out] rounded-lg bg-red-50 dark:bg-red-500/10 px-4 py-3 text-sm font-medium text-red-700 dark:text-red-400">
+            {sendError}
           </p>
         )}
       </form>

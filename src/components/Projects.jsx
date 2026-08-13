@@ -21,7 +21,7 @@ function Projects() {
     {
       title: 'AI Chatbot',
       description: 'Integrated OpenRouter AI API for real AI-powered responses, deployed on Vercel.',
-      githubLink: 'https://github.com/samreeniqbal09/Mini-Ai-chatbot-1.git',
+      githubLink: "https://github.com/samreeniqbal09/AI-chatbot.git",
       color: 'orange'
     },
     {
