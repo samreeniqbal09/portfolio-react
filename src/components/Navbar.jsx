@@ -1,18 +1,28 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Navbar({ darkMode, setDarkMode }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navLinks = ['About', 'Skills', 'Projects', 'Contact'];
+  const navLinks = [
+    { label: 'Home', to: '/' },
+    { label: 'Projects', to: '/projects' },
+    { label: 'Blog', to: '/blog' },
+  ];
+
+  const linkClass = ({ isActive }) =>
+    isActive ? 'nav-link nav-link--active' : 'nav-link';
 
   return (
     <nav>
       <div className="nav-brand">Samreen Iqbal</div>
 
       <ul className="nav-links">
-        {navLinks.map((link) => (
-          <li key={link}>
-            <a href={`#${link.toLowerCase()}`}>{link}</a>
+        {navLinks.map(({ label, to }) => (
+          <li key={to}>
+            <NavLink to={to} end={to === '/'} className={linkClass}>
+              {label}
+            </NavLink>
           </li>
         ))}
 
@@ -48,18 +58,15 @@ function Navbar({ darkMode, setDarkMode }) {
 
       {isOpen && (
         <ul className="mobile-menu">
-          {navLinks.map((link) => (
-            <li key={link}>
-              <a href={`#${link.toLowerCase()}`} onClick={() => setIsOpen(false)}>
-                {link}
-              </a>
+          {navLinks.map(({ label, to }) => (
+            <li key={to}>
+              <NavLink to={to} end={to === '/'} className={linkClass} onClick={() => setIsOpen(false)}>
+                {label}
+              </NavLink>
             </li>
           ))}
           <li>
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="mt-2"
-            >
+            <button onClick={() => setDarkMode(!darkMode)} className="mt-2">
               {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
             </button>
           </li>

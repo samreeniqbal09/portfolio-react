@@ -55,6 +55,17 @@ nav {
   color: #60a5fa;
 }
 
+.nav-links a.nav-link--active,
+.mobile-menu a.nav-link--active {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.dark .nav-links a.nav-link--active,
+.dark .mobile-menu a.nav-link--active {
+  color: #60a5fa;
+}
+
 .hamburger {
   display: none;
   background: none;
