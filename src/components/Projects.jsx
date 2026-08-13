@@ -17,7 +17,7 @@ function Projects() {
       title: 'Web-Based Chatbot',
       description:
         'Converted the CLI chatbot into a web app using HTML, CSS, and JavaScript.',
-      category: 'Web',
+      category: 'React',
       githubLink: null,
       color: 'purple',
     },
@@ -25,7 +25,7 @@ function Projects() {
       title: 'Flask Backend Chatbot',
       description:
         'Connected the web frontend to a Flask backend with API endpoints.',
-      category: 'Python',
+      category: 'Flask',
       githubLink: null,
       color: 'green',
     },
@@ -41,7 +41,7 @@ function Projects() {
       title: 'Portfolio Website',
       description:
         'Personal portfolio built with React + Tailwind CSS.',
-      category: 'Web',
+      category: 'React',
       githubLink: 'https://github.com/samreeniqbal09/portfolio-react.git',
       color: 'pink',
     },
@@ -63,10 +63,11 @@ function Projects() {
     pink: '#db2777',
   }
 
+  // Search + category filter
   const filteredProjects = projects.filter((project) => {
-    const matchesSearch =
-      project.title.toLowerCase().includes(search.toLowerCase()) ||
-      project.description.toLowerCase().includes(search.toLowerCase())
+    const matchesSearch = project.title
+      .toLowerCase()
+      .includes(search.toLowerCase())
 
     const matchesCategory =
       category === 'All' || project.category === category
@@ -91,14 +92,20 @@ function Projects() {
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-8">
-        {['All', 'Python', 'Web', 'AI'].map((item) => (
+        {['All', 'Python', 'React', 'AI', 'Flask'].map((item) => (
           <button
             key={item}
-            onClick={() => setCategory(item)}
-            className={`px-4 py-2 rounded-lg border ${
+            onClick={() => {
+              setCategory(item)
+
+              if (item === 'All') {
+                setSearch('')
+              }
+            }}
+            className={`px-4 py-2 rounded-lg border transition-all duration-300 ${
               category === item
                 ? 'bg-blue-600 text-white border-blue-600'
-                : 'border-gray-400 dark:border-gray-600 dark:text-gray-300'
+                : 'border-gray-400 dark:border-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
             }`}
           >
             {item}
@@ -111,7 +118,7 @@ function Projects() {
         {filteredProjects.map((project) => (
           <div
             key={project.title}
-            className="border rounded-lg p-5 dark:border-gray-700"
+            className="border rounded-lg p-5 dark:border-gray-700 transition-all duration-300 hover:shadow-lg"
           >
             <div className="flex items-center gap-3 mb-3">
               <span
@@ -161,8 +168,8 @@ function Projects() {
 
       {/* No results */}
       {filteredProjects.length === 0 && (
-        <p className="text-gray-600 dark:text-gray-300 mt-6">
-          No projects found.
+        <p className="text-gray-600 dark:text-gray-300 mt-6 text-center">
+          No projects found
         </p>
       )}
     </section>
