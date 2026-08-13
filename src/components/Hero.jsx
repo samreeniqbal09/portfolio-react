@@ -8,10 +8,10 @@ function Hero() {
       className="px-6 py-20 max-w-3xl mx-auto flex flex-col items-center text-center gap-6 dark:bg-gray-900"
     >
       <img
-        src="/src/assets/profile.jpeg"
-        alt="Samreen Iqbal"
-        className="w-40 h-40 rounded-full object-cover border-4 border-gray-200 dark:border-gray-700"
-      />
+     src={profilePic}
+     alt="Samreen Iqbal"
+    className="w-40 h-40 rounded-full object-cover border-4 border-gray-200 dark:border-gray-700"
+    />
 
       <div>
         <h1 className="text-4xl font-bold mb-2 dark:text-white">Samreen Iqbal</h1>
