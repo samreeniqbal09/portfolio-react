@@ -4,6 +4,7 @@
 html {
   scroll-behavior: smooth;
 }
+
 nav {
   display: flex;
   align-items: center;
