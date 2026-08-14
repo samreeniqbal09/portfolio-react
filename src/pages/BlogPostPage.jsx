@@ -7,17 +7,17 @@ export default function BlogPostPage() {
 
   if (!post) {
     return (
-      <main className="pt-24 px-4 max-w-3xl mx-auto min-h-screen">
+      <div className="pt-24 px-4 max-w-3xl mx-auto min-h-screen">
         <p className="dark:text-white">Post not found.</p>
         <Link to="/blog" className="text-blue-500 hover:underline">
           ← Back to blog
         </Link>
-      </main>
+      </div>
     )
   }
 
   return (
-    <main className="pt-24 px-4 max-w-3xl mx-auto min-h-screen">
+    <div className="pt-24 px-4 max-w-3xl mx-auto min-h-screen">
       <Link to="/blog" className="text-blue-500 hover:underline">
         ← Back to blog
       </Link>
@@ -37,6 +37,6 @@ export default function BlogPostPage() {
           </p>
         ))}
       </div>
-    </main>
+    </div>
   )
 }
