@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { blogPosts } from '../data/blogPosts.js'
+import FadeInSection from '../components/FadeInSection.jsx'
 
 export default function BlogPage() {
   return (
@@ -9,20 +10,25 @@ export default function BlogPage() {
       </h1>
 
       <div className="grid gap-6 md:grid-cols-3">
-        {blogPosts.map((post) => (
-          <Link
-            key={post.id}
-            to={`/blog/${post.id}`}
-            className="block p-6 rounded-lg border dark:border-gray-700 dark:bg-gray-800 hover:shadow-lg transition"
-          >
-            <h2 className="text-xl font-semibold dark:text-white">
-              {post.title}
-            </h2>
+        {blogPosts.map((post, index) => (
+          <FadeInSection key={post.id} delay={index * 0.1}>
+            <Link
+              to={`/blog/${post.id}`}
+              className="block p-6 rounded-lg border dark:border-gray-700 dark:bg-gray-800 hover:shadow-lg transition"
+            >
+              <h2 className="text-xl font-semibold dark:text-white">
+                {post.title}
+              </h2>
 
-            <p className="text-gray-600 dark:text-gray-300 mt-2">
-              {post.excerpt}
-            </p>
-          </Link>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                {post.date}
+              </p>
+
+              <p className="text-gray-600 dark:text-gray-300 mt-2">
+                {post.excerpt}
+              </p>
+            </Link>
+          </FadeInSection>
         ))}
       </div>
     </main>
