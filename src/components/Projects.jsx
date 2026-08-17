@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import aiChatbotImg from '../assets/project-ai-chatbot.png'
 
 function Projects() {
   const [search, setSearch] = useState('')
@@ -13,7 +12,6 @@ function Projects() {
       category: 'Python',
       githubLink: null,
       color: 'blue',
-      image: null,
     },
     {
       title: 'Web-Based Chatbot',
@@ -22,7 +20,6 @@ function Projects() {
       category: 'React',
       githubLink: null,
       color: 'purple',
-      image: null,
     },
     {
       title: 'Flask Backend Chatbot',
@@ -31,7 +28,6 @@ function Projects() {
       category: 'Flask',
       githubLink: null,
       color: 'green',
-      image: null,
     },
     {
       title: 'AI Chatbot',
@@ -40,7 +36,6 @@ function Projects() {
       category: 'AI',
       githubLink: 'https://github.com/samreeniqbal09/AI-chatbot.git',
       color: 'orange',
-      image: aiChatbotImg,
     },
     {
       title: 'Portfolio Website',
@@ -49,7 +44,6 @@ function Projects() {
       category: 'React',
       githubLink: 'https://github.com/samreeniqbal09/portfolio-react.git',
       color: 'pink',
-      image: null,
     },
   ]
 
@@ -69,7 +63,6 @@ function Projects() {
     pink: '#db2777',
   }
 
-  // Search + category filter
   const filteredProjects = projects.filter((project) => {
     const matchesSearch = project.title
       .toLowerCase()
@@ -126,15 +119,6 @@ function Projects() {
             key={project.title}
             className="border rounded-lg p-5 dark:border-gray-700 transition-all duration-300 hover:shadow-lg"
           >
-            {project.image && (
-              <img
-                src={project.image}
-                alt={`Screenshot of ${project.title}`}
-                loading="lazy"
-                className="w-full h-40 object-cover rounded-lg mb-4"
-              />
-            )}
-
             <div className="flex items-center gap-3 mb-3">
               <span
                 className={`${bgMap[project.color]} p-2 rounded-lg`}
@@ -167,8 +151,8 @@ function Projects() {
 
             {project.githubLink && (
               <div className="mt-3">
-                
-                 <a href={project.githubLink}
+                <a
+                  href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 dark:text-blue-400 hover:underline"
