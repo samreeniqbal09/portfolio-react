@@ -1,114 +1,311 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/space-grotesk";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
-html {
-  scroll-behavior: smooth;
+/* =========================
+   SHADCN THEME
+========================= */
+
+@theme inline {
+  /* Font Pairing */
+  --font-heading: "Space Grotesk Variable", sans-serif;
+  --font-sans: "Inter Variable", sans-serif;
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+
+  --color-destructive: var(--destructive);
+
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* =========================
+   LIGHT MODE
+========================= */
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  /* Primary - Indigo */
+  --primary: #6366f1;
+  --primary-foreground: oklch(0.985 0 0);
+
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+
+  /* Accent - Cyan */
+  --accent: #22d3ee;
+  --accent-foreground: oklch(0.145 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+
+  --ring: #6366f1;
+
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+
+  --radius: 0.625rem;
+
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+
+  --sidebar-primary: #6366f1;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: #6366f1;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+.dark {
+  --background: #0f0f14;
+  --foreground: oklch(0.985 0 0);
+
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+
+  /* Primary - Light Indigo */
+  --primary: #818cf8;
+  --primary-foreground: oklch(0.145 0 0);
+
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+
+  /* Accent - Cyan */
+  --accent: #22d3ee;
+  --accent-foreground: oklch(0.145 0 0);
+
+  --destructive: oklch(0.704 0.191 22.216);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+
+  --ring: #818cf8;
+
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+
+  --sidebar-primary: #818cf8;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: #818cf8;
+}
+
+/* =========================
+   BASE STYLES
+========================= */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter Variable", sans-serif;
+    margin: 0;
+  }
+
+  /* Space Grotesk for all headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Space Grotesk Variable", sans-serif;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font-family: "Inter Variable", sans-serif;
+  }
+}
+
+/* =========================
+   FONT UTILITY CLASSES
+========================= */
+
+.font-heading {
+  font-family: "Space Grotesk Variable", sans-serif;
+}
+
+.font-body {
+  font-family: "Inter Variable", sans-serif;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
 nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 50;
 }
 
-.dark nav {
-  background-color: #111827;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+/* =========================
+   HERO SIGNATURE ELEMENT
+========================= */
+
+.hero-glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.25),
+    rgba(34, 211, 238, 0.2)
+  );
+
+  filter: blur(70px);
+
+  z-index: 0;
+  pointer-events: none;
+
+  animation: heroGlow 6s ease-in-out infinite alternate;
 }
 
-.nav-brand {
-  font-weight: bold;
-  font-size: 1.25rem;
-  color: #111827;
+.dark .hero-glow {
+  background: linear-gradient(
+    135deg,
+    rgba(129, 140, 248, 0.3),
+    rgba(34, 211, 238, 0.25)
+  );
 }
 
-.dark .nav-brand {
-  color: white;
+@keyframes heroGlow {
+  from {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+
+  to {
+    transform: scale(1.05);
+    opacity: 1;
+  }
 }
 
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #374151;
-  font-weight: 500;
-}
-
-.nav-links a:hover {
-  color: #2563eb;
-}
-
-.dark .nav-links a {
-  color: #d1d5db;
-}
-
-.dark .nav-links a:hover {
-  color: #60a5fa;
-}
-
-.nav-links a.nav-link--active,
-.mobile-menu a.nav-link--active {
-  color: #2563eb;
-  font-weight: 700;
-}
-
-.dark .nav-links a.nav-link--active,
-.dark .mobile-menu a.nav-link--active {
-  color: #60a5fa;
-}
-
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #111827;
-}
-
-.dark .hamburger {
-  color: white;
-}
-
-.mobile-menu {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 2rem;
-  background: white;
-  border-top: 1px solid #e5e7eb;
-}
-
-.dark .mobile-menu {
-  background: #111827;
-  border-top: 1px solid #374151;
-}
-
-.mobile-menu a {
-  text-decoration: none;
-  color: #374151;
-  padding: 0.5rem 0;
-}
-
-.dark .mobile-menu a {
-  color: #d1d5db;
-}
+/* =========================
+   RESPONSIVE HERO GLOW
+========================= */
 
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
+  .hero-glow {
+    width: 220px;
+    height: 220px;
+    filter: blur(55px);
   }
-  .hamburger {
-    display: block;
-  }
+}
+
+/* =========================
+   SELECTION
+========================= */
+
+::selection {
+  background: rgba(99, 102, 241, 0.25);
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
 }

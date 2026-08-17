@@ -1,4 +1,13 @@
 import { useState } from 'react'
+import { motion } from 'motion/react'
+import { Badge } from '@/components/ui/badge'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 
 function Projects() {
   const [search, setSearch] = useState('')
@@ -11,7 +20,6 @@ function Projects() {
         'A command-line chatbot built with Python using dictionary-based Q&A.',
       category: 'Python',
       githubLink: null,
-      color: 'blue',
     },
     {
       title: 'Web-Based Chatbot',
@@ -19,7 +27,6 @@ function Projects() {
         'Converted the CLI chatbot into a web app using HTML, CSS, and JavaScript.',
       category: 'React',
       githubLink: null,
-      color: 'purple',
     },
     {
       title: 'Flask Backend Chatbot',
@@ -27,41 +34,24 @@ function Projects() {
         'Connected the web frontend to a Flask backend with API endpoints.',
       category: 'Flask',
       githubLink: null,
-      color: 'green',
     },
     {
       title: 'AI Chatbot',
       description:
         'Integrated OpenRouter AI API for real AI-powered responses, deployed on Vercel.',
       category: 'AI',
-      githubLink: 'https://github.com/samreeniqbal09/AI-chatbot.git',
-      color: 'orange',
+      githubLink:
+        'https://github.com/samreeniqbal09/AI-chatbot.git',
     },
     {
       title: 'Portfolio Website',
       description:
         'Personal portfolio built with React + Tailwind CSS.',
       category: 'React',
-      githubLink: 'https://github.com/samreeniqbal09/portfolio-react.git',
-      color: 'pink',
+      githubLink:
+        'https://github.com/samreeniqbal09/portfolio-react.git',
     },
   ]
-
-  const bgMap = {
-    blue: 'bg-blue-100 dark:bg-blue-900',
-    purple: 'bg-purple-100 dark:bg-purple-900',
-    green: 'bg-green-100 dark:bg-green-900',
-    orange: 'bg-orange-100 dark:bg-orange-900',
-    pink: 'bg-pink-100 dark:bg-pink-900',
-  }
-
-  const strokeMap = {
-    blue: '#2563eb',
-    purple: '#9333ea',
-    green: '#16a34a',
-    orange: '#ea580c',
-    pink: '#db2777',
-  }
 
   const filteredProjects = projects.filter((project) => {
     const matchesSearch = project.title
@@ -75,101 +65,155 @@ function Projects() {
   })
 
   return (
-    <section className="px-6 py-16 max-w-6xl mx-auto dark:bg-gray-900">
-      <h2 className="text-3xl font-bold mb-6 dark:text-white">
-        Projects
-      </h2>
+    <section
+      id="projects"
+      className="relative px-4 sm:px-6 py-16 sm:py-20 max-w-7xl mx-auto"
+    >
+      {/* Subtle section glow */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.05),transparent_60%)]" />
+
+      {/* Section Heading */}
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="text-center mb-10"
+      >
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-indigo-500">
+          My Work
+        </p>
+
+        <h2 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+          Featured Projects
+        </h2>
+
+        <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+          A selection of projects I've built while developing my
+          skills in software development, React, Python, Flask, and AI.
+        </p>
+      </motion.div>
 
       {/* Search */}
-      <input
-        type="text"
-        placeholder="Search projects..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="w-full mb-4 px-4 py-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-      />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="max-w-2xl mx-auto mb-5"
+      >
+        <input
+          type="text"
+          placeholder="Search projects..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full px-4 py-3 rounded-xl border border-input bg-background/70 backdrop-blur-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all"
+        />
+      </motion.div>
 
-      {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-8">
+      {/* Category Filters */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-wrap justify-center gap-2 mb-10"
+      >
         {['All', 'Python', 'React', 'AI', 'Flask'].map((item) => (
-          <button
-            key={item}
-            onClick={() => {
-              setCategory(item)
+          <Button
+  key={item}
+  variant={category === item ? 'default' : 'outline'}
+  size="sm"
+  onClick={() => {
+    setCategory(item)
 
-              if (item === 'All') {
-                setSearch('')
-              }
-            }}
-            className={`px-4 py-2 rounded-lg border transition-all duration-300 ${
-              category === item
-                ? 'bg-blue-600 text-white border-blue-600'
-                : 'border-gray-400 dark:border-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-            }`}
-          >
-            {item}
-          </button>
+    if (item === 'All') {
+      setSearch('')
+    }
+  }}
+  className={
+    category === item
+      ? 'bg-indigo-500 text-white hover:bg-indigo-600 shadow-md shadow-indigo-500/20'
+      : 'border-border bg-background text-foreground hover:border-indigo-500/50 hover:bg-muted hover:text-indigo-500 dark:text-white'
+  }
+>
+  {item}
+</Button>
         ))}
-      </div>
+      </motion.div>
 
-      {/* Projects Grid */}
+      {/* Project Grid */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredProjects.map((project) => (
-          <div
+        {filteredProjects.map((project, index) => (
+          <motion.div
             key={project.title}
-            className="border rounded-lg p-5 dark:border-gray-700 transition-all duration-300 hover:shadow-lg"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{
+              duration: 0.5,
+              delay: index * 0.08,
+              ease: 'easeOut',
+            }}
+            whileHover={{ y: -6 }}
           >
-            <div className="flex items-center gap-3 mb-3">
-              <span
-                className={`${bgMap[project.color]} p-2 rounded-lg`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke={strokeMap[project.color]}
-                  strokeWidth="2"
-                >
-                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-                </svg>
-              </span>
+            <Card className="group h-full border-border/50 bg-card/80 backdrop-blur-sm transition-all duration-300 hover:border-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/10">
+              <CardHeader>
+                <div className="flex items-start justify-between gap-3">
+                  <CardTitle className="text-xl leading-tight transition-colors group-hover:text-indigo-500">
+                    {project.title}
+                  </CardTitle>
 
-              <h3 className="text-xl font-semibold dark:text-white">
-                {project.title}
-              </h3>
-            </div>
+                  <Badge
+                    variant="secondary"
+                    className="shrink-0 transition-colors group-hover:bg-indigo-500/10 group-hover:text-indigo-500"
+                  >
+                    {project.category}
+                  </Badge>
+                </div>
+              </CardHeader>
 
-            <p className="text-gray-700 dark:text-gray-300 mb-3">
-              {project.description}
-            </p>
+              <CardContent>
+                <p className="text-muted-foreground leading-relaxed">
+                  {project.description}
+                </p>
 
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {project.category}
-            </span>
-
-            {project.githubLink && (
-              <div className="mt-3">
-                <a
-                  href={project.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  View on GitHub
-                </a>
-              </div>
-            )}
-          </div>
+                {project.githubLink && (
+                  <div className="mt-5">
+                    <a
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-sm font-medium text-indigo-500 hover:text-indigo-400 transition-colors"
+                    >
+                      View on GitHub
+                      <span className="ml-1 transition-transform group-hover:translate-x-1">
+                        →
+                      </span>
+                    </a>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
       </div>
 
-      {/* No results */}
+      {/* Empty State */}
       {filteredProjects.length === 0 && (
-        <p className="text-gray-600 dark:text-gray-300 mt-6 text-center">
-          No projects found
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-10 text-center"
+        >
+          <p className="text-lg font-medium text-foreground">
+            No projects found
+          </p>
+
+          <p className="mt-1 text-sm text-muted-foreground">
+            Try a different search term or category.
+          </p>
+        </motion.div>
       )}
     </section>
   )
